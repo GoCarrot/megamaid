@@ -1,0 +1,16 @@
+#!/usr/bin/env ruby
+filename = File.join(File.dirname(__FILE__), "src", "io", "teak", "megamaid", "FivePoundBag.java")
+begin
+  file = File.open(filename, "w")
+  file.puts "// This file is auto-generated...I mean, obviously."
+  file.puts "package io.teak.megamaid;"
+  file.puts "public class FivePoundBag {"
+  (1..65000).each do |n|
+    file.puts "    public void n#{n}(){}"
+  end
+  file.puts "}"
+rescue IOError => e
+  #some error occur, dir not writable etc.
+ensure
+  file.close unless file.nil?
+end
